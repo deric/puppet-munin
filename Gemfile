@@ -9,3 +9,5 @@ end
 gem 'puppet',  puppetversion
 gem 'puppet-lint', '>=0.3.2'
 gem 'puppetlabs_spec_helper', '>=0.2.0'
+gem 'rake'
+gem 'rspec-puppet', '>= 0.1.3'
