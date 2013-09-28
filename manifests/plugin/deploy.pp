@@ -3,7 +3,8 @@ define munin::plugin::deploy(
   $ensure   = 'present',
   $source   = '',
   $config   = '',
-  $seltype  = 'munin_exec_t'
+  $seltype  = 'munin_exec_t',
+  $mountpoint = 'modules'
 ) {
   $plugin_src = $ensure ? {
     'present' => $name,
@@ -17,7 +18,7 @@ define munin::plugin::deploy(
   include munin::plugin::scriptpaths
   file { "munin_plugin_${name}":
     path    => "${munin::plugin::scriptpaths::script_path}/${name}",
-    source  => "puppet:///modules/${real_source}",
+    source  => "puppet:///${mountpoint}/${real_source}",
     owner   => root,
     group   => 0,
     mode    => '0755';
