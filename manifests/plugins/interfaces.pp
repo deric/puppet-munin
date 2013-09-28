@@ -8,7 +8,8 @@ class munin::plugins::interfaces {
 
   # filter out many of the useless interfaces that show up
   #$real_ifs = reject(split($::interfaces, ' |,'), 'eth\d+_\d+|sit0|virbr\d+_nic|vif\d+_\d+|veth\d+|__tmp\d+')
-  $real_ifs = $::real_interfaces
+  #  $real_ifs = $::real_interfaces
+  $real_ifs = "eth0"
   $ifs = regsubst($real_ifs, '(.+)', 'if_\1')
   $if_errs = regsubst($real_ifs, '(.+)', "${if_err_plugin}\1")
 
