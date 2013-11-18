@@ -14,8 +14,12 @@ class munin::client::debian inherits munin::client::base {
     # sarge's munin-node init script has no status
     hasstatus => $hasstatus
   }
-  File['/etc/munin/munin-node.conf']{
-    content => template("munin/munin-node.conf.${::operatingsystem}.${::lsbdistcodename}"),
+  file{'/etc/munin/munin-node.conf':
+    ensure  => file,
+    content => inline_template(file(
+    "munin/munin-node.conf.${::operatingsystem}.${::lsbdistcodename}",
+    "munin/munin-node.conf.${::operatingsystem}",
+    )),
   }
   # workaround bug in munin_node_configure
   plugin { 'postfix_mailvolume': ensure => absent }
