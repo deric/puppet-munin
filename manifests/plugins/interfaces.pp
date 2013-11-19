@@ -2,7 +2,8 @@
 class munin::plugins::interfaces {
 
   # filter out many of the useless interfaces that show up
-  $real_ifs = reject(split($::interfaces, ' |,'), 'eth\d+_\d+|sit0|virbr\d+_nic|vif\d+_\d+|veth\d+|__tmp\d+')
+  #$real_ifs = reject(split($::interfaces, ' |,'), 'eth\d+_\d+|sit0|virbr\d+_nic|vif\d+_\d+|veth\d+|__tmp\d+')
+  $real_ifs = split($::interfaces, ' |,')
 
   $ifs = prefix($real_ifs, 'if_')
 
